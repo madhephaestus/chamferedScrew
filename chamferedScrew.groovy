@@ -28,13 +28,16 @@ CSG getNut(){
 	LengthParameter boltLength		= new LengthParameter("Bolt Length",10,[180,10])
 	LengthParameter offset		= new LengthParameter("printerOffset",0.0,[2,0])
 	if(args==null)
-		args=["M3"]
+		args=["M3x16"]
 	String sizeVar = args.get(0)
 	StringParameter size = new StringParameter(	type+" Default",
 										sizeVar,
 										Vitamins.listVitaminSizes(type))
+	//size.setString(sizeVar)
 	//println "Database loaded "+database
+	//println Vitamins.listVitaminSizes(type)
 	HashMap<String,Object> servoConfig = Vitamins.getConfiguration( type,size.getStrValue())
+	//println servoConfig
 	headDiameter=Double.parseDouble(servoConfig.get("headDiameter").toString())+offset.getMM()
 	headHeight=Double.parseDouble(servoConfig.get("headHeight").toString())
 	keyDepth=Double.parseDouble(servoConfig.get("keyDepth").toString())
